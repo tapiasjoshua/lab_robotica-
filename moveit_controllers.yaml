@@ -1,0 +1,20 @@
+# MoveIt uses this configuration for controller management
+# Correcciones: lista de juntas completada (dificultad 2) y gripper_controller
+# retirado porque en la simulacion es un JointGroupPositionController sin accion (dificultad 6).
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+moveit_simple_controller_manager:
+  controller_names:
+    - scaled_joint_trajectory_controller
+
+  scaled_joint_trajectory_controller:
+    type: FollowJointTrajectory
+    action_ns: follow_joint_trajectory
+    default: true
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint

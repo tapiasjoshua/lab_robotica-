@@ -1,0 +1,24 @@
+planning_plugins:
+  - ompl_interface/OMPLPlanner
+# The order of the elements in the adapter corresponds to the order they are processed by the motion planning pipeline.
+request_adapters:
+  - default_planning_request_adapters/ResolveConstraintFrames
+  - default_planning_request_adapters/ValidateWorkspaceBounds
+  - default_planning_request_adapters/CheckStartStateBounds
+  - default_planning_request_adapters/CheckStartStateCollision
+response_adapters:
+  - default_planning_response_adapters/AddTimeOptimalParameterization
+  - default_planning_response_adapters/ValidateSolution
+  - default_planning_response_adapters/DisplayMotionPath
+
+# Resolucion de la verificacion de colisiones a lo largo del camino (dificultad 11).
+# Con el valor por defecto (0.005) un obstaculo delgado puede quedar entre dos estados
+# verificados; ValidateSolution lo detecta despues y el plan se rechaza.
+ur_arm:
+  default_planner_config: RRTConnectkConfigDefault
+  planner_configs:
+    - RRTConnectkConfigDefault
+    - RRTkConfigDefault
+    - RRTstarkConfigDefault
+    - PRMkConfigDefault
+  longest_valid_segment_fraction: 0.0005

@@ -1,0 +1,21 @@
+ur5_moveit_routine:
+  ros__parameters:
+    use_sim_time: true
+    planning_group: "ur_arm"
+    end_effector_link: "tool0"
+    home_state: "Home"          # pose con nombre definida en el SRDF
+    planning_time: 10.0         # s
+    planning_attempts: 5
+    velocity_scaling: 0.5       # 0.10 por defecto del asistente; 0.5 reduce la dificultad 7
+    acceleration_scaling: 0.5
+    approach_height: 0.15       # m sobre los puntos de toma y deposito
+    cartesian_eef_step: 0.005   # m entre puntos de la trayectoria cartesiana
+    min_cartesian_fraction: 0.95
+    goal_tolerance: 0.02        # rad, para validar ejecuciones reportadas como fallidas
+    gripper_topic: "/gripper_controller/commands"
+    gripper_open: 0.04          # m por dedo
+    gripper_grasp: 0.015        # m por dedo (ancho de la pieza simulada: 3 cm)
+    gripper_wait: 1.5           # s de tiempo simulado tras cada comando del gripper
+    # add_obstacle se pasa desde el lanzador (add_obstacle:=true); si se declarara aqui,
+    # este valor especifico del nodo prevaleceria sobre el argumento de lanzamiento.
+    obstacle_height: 0.40       # m
